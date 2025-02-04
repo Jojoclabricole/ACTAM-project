@@ -37,10 +37,10 @@ function displayNewImage() {
 function updateAnswerImage(note) {
   let img = document.getElementById("correctImage");
   if (verifyNote(note)) {
-    img.src = "/img/correct.png";
+    img.src = "img/correct.png";
   }
   else {
-    img.src = "/img/mistake.png";
+    img.src = "img/mistake.png";
   }
   img.style.display = "block";
 }
