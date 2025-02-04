@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini-games</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.2/ace.js"></script>
+        <link rel="icon" type="image/png" href="img/note.png">
+        <link rel="stylesheet" href="project_style.css">
+    </head>
+    
+<body>
+    <b>
+        <h1 style="color: white;">Welcome! Two mini-games and one challenge to help you train your musical ear</h1>
+    </b>
+    <div class="nav-bar">
+        <button onclick="switchGame('game1')" class="Btn">Mini-Game 1</button>
+        <button onclick="switchGame('game2')" class="Btn">Mini-Game 2</button>
+        <button onclick="switchGame('game3')" class="Btn">Challenge</button>
+        <button onclick="switchGame('rules')" class="Btn">Rules</button>
+
+    </div>
+
+    <div id="game2" class="game-section ">
+        <div id="container">
+            <div class="brick1">
+                <b>
+                    <p style="color: white;">Rules:</p>
+                    <p style="color: white; font-size: large;">- Please, select a mode before launching a sequence</p>
+                    <p style="color: white; font-size: large;"> - Double tap on a button to specify a sharp note</pstyle></p>
+                </b>
+                <button id="launchBtn" class="Btn modeBtn" onclick="modeBtnPressed(this)">Launch</button>
+                <button id="repeatBtn" class="Btn modeBtn" onclick="modeBtnPressed(this)">Repeat</button>
+                <button id="tryBtn" class="Btn modeBtn" onclick="verify(), coverFirstNote()">Try</button>
+                <button id="retryBtn" class="Btn modeBtn" onclick="retry()">Retry</button>
+                <b>
+                    <p style="color: white;font-size: large;">Easy: crescendo or decrescendo</p>
+                    <p style="color: white;font-size: large;">Medium: (crescendo, decrescendo, crescendo + decrescendo, decrescendo + crescendo)</p>
+                    <p style="color: white;font-size: large;">Hard: full random</p>
+
+                </b>
+                <button id="tipBtn" class="Btn modeBtn" onclick="revealFirstNote()">Tip:</button>
+                
+            </div>
+
+            <div class="brick2"> 
+                <div class="modeSection">
+                    <button id="easyMode" onclick="shiftMode(0), shiftColorMode(0)" class="Btn levelBtn">Easy</button>
+                    <button id="mediumMode" class="Btn levelBtn" onclick="shiftMode(1), shiftColorMode(1)">Medium</button>
+                    <button id="hardMode" class="Btn levelBtn" onclick="shiftMode(2), shiftColorMode(2)">Hard</button>
+                </div>
+                <div class="imageContainer g2" style="padding: 110px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div id="game1" class="game-section  " >
+        <div class="brick1" style="width: 30%; flex-direction: row; float: left;"> 
+            <img id="correctImage" src="/img/interrogation_point.png" style=" margin: 10px; border-radius: 10px;"> 
+            <div style="width: 30%; height: 15%; ">
+                <button onclick="updateAnswerImage('A')" class="Btn agBtn">A</button>
+                <button onclick="updateAnswerImage('B')" class="Btn agBtn">B</button>
+                <button onclick="updateAnswerImage('C')" class="Btn agBtn">C</button>
+            </div>
+            <div style="width: 30%; height: 15%;">
+                <button onclick="updateAnswerImage('D')" class="Btn agBtn">D</button>
+                <button onclick="updateAnswerImage('E')" class="Btn agBtn">E</button>
+                <button onclick="updateAnswerImage('F')" class="Btn agBtn">F</button>
+                <button onclick="updateAnswerImage('G')" class="Btn agBtn">G</button>
+            </div>
+        </div>
+
+        <div class="brick2" style="width: 70%;">
+            <button style="width: 100%; padding: 40px; border-radius: 10px; font-size: large; background-color: rgb(204, 101, 33) ; color: white; cursor: pointer;" onclick="displayNewImage()">Display Image</button>
+            <div class="imageContainer g1" ></div>  
+        </div>
+    </div>
+    
+
+
+
+
+
+    <div id="game3" class="game-section ">
+        <div class="brick1">
+            <input style = "width: 80%; height: 20%; display: block;" type="text" id="username" placeholder="Register pseudo">
+            <button class="Btn" id= "startBtn" onclick="savePlayer(0)">Save my pseudo</button>
+            <button class="Btn" id= "saveBtn" onclick="saveScore(), enableButtonById('launchBtnChallenge')">Save my score</button>
+            <p class="challengeContainer" id="currentScore">CurrentScore: </p>
+            <p class="challengeContainer" id="score">Total Score: </p> 
+            
+
+            </div>
+
+        <div class="brick2" style="vertical-align: middle;">
+            <div class="modeSection">
+                <button class="Btn" id="launchBtnChallenge" onclick="launchChallengeSequence(this)"> Launch sequence</button>
+                <button class="Btn" id="repeatBtnChallenge" onclick="launchChallengeSequence(this)"> Repeat Sequence</button>
+                <button class="Btn" onclick="calcPoint(), enableButtons()">Submit sequence</button>
+                <p class="challengeContainer" id="attempts" >Attempts: </p> 
+                <p class="challengeContainer" id="seqLeft">Sequences left: </p> 
+            </div>
+            <div id="noteContainer"></div>
+        </div>
+    </div>
+
+    <div id="rules" class="game-section active">
+        <div class="brick1" style="width: 100%;">
+            <h1 class="challengeContainer">Mini-game 1: Guess the correct note on the music sheet, it goes from D3 to F4.</h1>
+            <h1 class="challengeContainer">Mini-game 2: Guess the progression of note. 3 modes from easy to hard.</h1>
+            <h1 class="challengeContainer">Challenge: 5 random notes will be played, you have three attempts for each sequence to guess correctly the five notes.</h1>
+
+        </div>
+    </div>
+
+</body>
+<script src="project_script.js"  defer ></script>
+
+</html>
