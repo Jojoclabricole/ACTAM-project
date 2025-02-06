@@ -9,7 +9,7 @@ Javascript, HTML, CSS, and Tone.js for every sound features.
 
 The goal of this project is to help endeveaoured musicians to enhance their musical earing ability through mini-games and challenges. 
 
-## Web interfafce 
+## Web interface 
 
 The front is made so that we can switch from mini-games or challenges without having to load new pages. It was a choice made in reference to old flash games that we could find online, where the game was placed in the middle of the web page, surounded by loads of information. 
 
